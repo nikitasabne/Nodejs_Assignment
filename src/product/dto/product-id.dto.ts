@@ -1,6 +1,6 @@
 import { IsMongoId } from 'class-validator';
 
-export class ClassroomIdDto {
+export class ProductIdDto {
   @IsMongoId()
   id: string;
 }
