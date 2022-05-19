@@ -9,6 +9,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthGuard } from './common/guards/auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { ResourceOwnerVerifierModule } from './resource-owner-verifier/resource-owner-verifier.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ResourceOwnerVerifierModule } from './resource-owner-verifier/resource-
     CatModule,
     ConfigModule.forRoot(),
     ResourceOwnerVerifierModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [
