@@ -38,6 +38,7 @@ export class AuthGuard implements CanActivate {
       } else {
         try {
           req.user = this.authService.verifyJWT(token);
+          if (req.user.role === 'admin') return true;
           const user = await this.userService.findOne(req.user._id);
           if (user) {
             // console.log('user: ', user);

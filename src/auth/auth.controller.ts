@@ -7,6 +7,11 @@ import { SignupByEmailDto } from './dto/signup-by-email.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Post('email/admin/login')
+  loginAdminByEmail(@Body() credentials: LoginByEmailDto) {
+    return this.authService.doAdminLoginByEmail(credentials);
+  }
+
   @Post('email/login')
   LoginByEmail(@Body() credentials: LoginByEmailDto) {
     return this.authService.doLoginByEmail(credentials);

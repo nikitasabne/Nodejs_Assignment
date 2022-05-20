@@ -48,6 +48,27 @@ export class AuthService {
               _id: user._id,
               name: user.name,
               email: user.email,
+              role: 'user',
+            }),
+          }
+        : 'email/password does not match';
+    } else return " email / password doesn't match";
+  }
+
+  async doAdminLoginByEmail(credentials: LoginByEmailDto) {
+    const { email, password } = credentials;
+    if (email === (process.env.ADMIN_EMAIL as string)) {
+      const comparePassword = bcrypt.compareSync(
+        password,
+        process.env.ADMIN_PASS as string,
+      );
+      return comparePassword
+        ? {
+            auth_token: this.generateJWT({
+              _id: 'admin',
+              name: 'admin',
+              email: process.env.ADMIN_EMAIL as string,
+              role: 'admin',
             }),
           }
         : 'email/password does not match';

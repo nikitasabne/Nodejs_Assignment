@@ -9,7 +9,9 @@ describe('ResourceOwnerVerifierService', () => {
       providers: [ResourceOwnerVerifierService],
     }).compile();
 
-    service = module.get<ResourceOwnerVerifierService>(ResourceOwnerVerifierService);
+    service = module.get<ResourceOwnerVerifierService>(
+      ResourceOwnerVerifierService,
+    );
   });
 
   it('should be defined', () => {
