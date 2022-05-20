@@ -3,8 +3,10 @@ import { PRODUCT_MODEL } from 'src/constants';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProductDocument } from './Schema/product.schema';
-import { Model } from 'mongoose';
+import { Model, QueryOptions, SaveOptions } from 'mongoose';
 import { ProductIdDto } from './dto/product-id.dto';
+import { filterDto, projectionDto } from 'nestjs-keyset-paginator';
+import { DataPaginatorService } from '../data-paginator/data-paginator.service';
 
 @Injectable()
 export class ProductService {
@@ -41,23 +43,31 @@ export class ProductService {
   }
 
   async findOne(productIdDto: ProductIdDto, query_options?: QueryOptions) {
-    return await this.ProductModel
-      .findById(productIdDto.id, null, query_options)
-      .exec();
-  }
+    return await this.ProductModel.findById(
+      productIdDto.id,
+      null,
+      query_options,
+    ).exec();
   }
 
-  async update(productIdDto: ProductIdDto, updateProductDto: UpdateProductDto, query_options?: QueryOptions) {
+  async update(
+    productIdDto: ProductIdDto,
+    updateProductDto: UpdateProductDto,
+    query_options?: QueryOptions,
+  ) {
     let options = { new: true };
     query_options && (options = { ...options, ...query_options });
-    return await this.ProductModel
-      .findByIdAndUpdate(productIdDto.id, updateProductDto, options)
-      .exec();
+    return await this.ProductModel.findByIdAndUpdate(
+      productIdDto.id,
+      updateProductDto,
+      options,
+    ).exec();
   }
 
   async remove(productIdDto: ProductIdDto, query_options?: QueryOptions) {
-    return await this.ProductModel
-      .findByIdAndDelete(productIdDto.id, query_options)
-      .exec();
+    return await this.ProductModel.findByIdAndDelete(
+      productIdDto.id,
+      query_options,
+    ).exec();
   }
 }

@@ -10,12 +10,14 @@ import { AuthGuard } from './common/guards/auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { ResourceOwnerVerifierModule } from './resource-owner-verifier/resource-owner-verifier.module';
 import { ProductModule } from './product/product.module';
+import { DataPaginatorModule } from './data-paginator/data-paginator.module';
 
 @Module({
   imports: [
     AuthModule,
     UserModule,
     DatabaseModule,
+    DataPaginatorModule,
     CatModule,
     ConfigModule.forRoot(),
     ResourceOwnerVerifierModule,

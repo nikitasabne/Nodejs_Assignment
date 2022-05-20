@@ -1,0 +1,2 @@
+const PAGINATION_SKIP = 0;
+const PAGINATION_LIMIT = 10;
