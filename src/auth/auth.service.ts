@@ -68,7 +68,7 @@ export class AuthService {
               _id: 'admin',
               name: 'admin',
               email: process.env.ADMIN_EMAIL as string,
-              role: 'admin',
+              role: ENUM_AUTH_ROLES.ADMIN,
             }),
           }
         : 'email/password does not match';
